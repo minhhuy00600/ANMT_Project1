@@ -32,11 +32,11 @@ def aes_enc(passphrase, Kprivate):
 
         key = key.rjust(length, padding)  # Padding key
 
-    cipher = AES.new(key, AES.MODE_EAX)
-    nonce = cipher.nonce
+    cipher = AES.new(key, AES.MODE_EAX)  # AES.new('key', 'AES mode', Vector IV)
+    # nonce = cipher.nonce
 
     # Encrypt start . Kprivate must be bytes type
-    Kprivate_enc_ed, tag = cipher.encrypt_and_digest(Kprivate)
+    Kprivate_enc_ed, tag = cipher.encrypt_and_digest(Kprivate)  # or cipher.encrypt('mess') 'mess' must be string type
     return Kprivate_enc_ed
 
 
