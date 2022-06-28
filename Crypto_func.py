@@ -19,7 +19,8 @@ from Crypto.Cipher import AES
 
 
 def hash_256(string):
-    hashed_string = hashlib.sha256(string.encode('utf-8')).hexdigest()
+    salt = 'hcmus'
+    return hashlib.sha256(string.encode('utf-8') + salt.encode('utf-8')).hexdigest()
     return hashed_string
 
 
@@ -82,3 +83,5 @@ def rsa_keygen():
 #         key_file.read(),
 #         password=None,
 #     )
+
+print(hash_256('abc'))
