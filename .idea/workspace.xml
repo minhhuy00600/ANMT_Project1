@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="036b3572-87ef-4e2e-bdbc-a147c0220218" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crypto func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Crypto_func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crypto_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Crypto_func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrivateKey.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PubKey.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minhhuy00600.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +44,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.Crypto_func (1)">
+  <component name="RunManager" selected="Python.main">
     <configuration name="Crypto_func (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ANMT_Project1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,8 +110,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Crypto_func (1)" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.Crypto_func (1)" />
         <item itemvalue="Python.Crypto_func" />
       </list>
     </recent_temporary>
@@ -137,13 +140,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>54</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>
