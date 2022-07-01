@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="036b3572-87ef-4e2e-bdbc-a147c0220218" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crypto_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Crypto_func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrivateKey.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PubKey.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Functions.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Functions.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minhhuy00600.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -12,6 +12,12 @@ from os.path import exists as file_exists
 
 
 class UI(QMainWindow):  # QMainWindow is main window
+    # email = str
+    # name = str
+    # birth = str
+    # phone_num = str
+    # address = str
+    # passphase = str
     def __init__(self):
         super(UI, self).__init__()
         uic.loadUi("log_in.ui", self)
@@ -63,6 +69,12 @@ class UI(QMainWindow):  # QMainWindow is main window
         if is_file:
             print("Username exist\n")
 
+    def loged_in(self, email):
+        print(email)
+        w = Func()
+        widget.addWidget(w)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
     def log_in(self):
         # Take account detail
         email = self.email_l_2.text()
@@ -82,19 +94,21 @@ class UI(QMainWindow):  # QMainWindow is main window
 
         if email == data['email'] and Crypto_func.hash_256(passphrase) == data['passphase']:
             print("Log in successfully\n")
-            w = Func()
-            widget.addWidget(w)
-            widget.setCurrentIndex(widget.currentIndex()+1)
+            self.loged_in(email)
             return
         print("Wrong password or Email")
 
 
-class Func(QDialog):  # QDialog for sub window to open from main window
+class Func(QDialog):  # QDialog for sub window to open from main window (See in QT designer Object Inspector)
     def __init__(self):
         super(Func, self).__init__()
         uic.loadUi("Functions.ui", self)
         self.show()
 
+        self.generate_key.clicked.connect(self.RSAButton)
+
+    def RSAButton(self):
+        pass
         # Click which button
 
 

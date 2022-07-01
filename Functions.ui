@@ -22,6 +22,9 @@
      <height>28</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>Update</string>
    </property>
@@ -34,6 +37,9 @@
      <width>93</width>
      <height>28</height>
     </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
     <string>Encrypt</string>
@@ -48,6 +54,9 @@
      <height>28</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>Decrypt</string>
    </property>
@@ -60,6 +69,9 @@
      <width>131</width>
      <height>28</height>
     </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
     <string>Confirm Signature</string>
@@ -74,8 +86,43 @@
      <height>28</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>Sign</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="generate_key">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>90</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>Generate RSA Key</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="noti_text">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>150</y>
+     <width>104</width>
+     <height>87</height>
+    </rect>
+   </property>
+   <property name="toolTipDuration">
+    <number>-1</number>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>
