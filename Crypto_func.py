@@ -4,7 +4,8 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
 from Crypto.Cipher import AES
-
+from Crypto.Hash import SHA256
+from Crypto.PublicKey import RSA
 
 # key = b'Sixteen byte key'  # Passphrase use to create key
 # cipher = AES.new(key, AES.MODE_EAX)
@@ -83,3 +84,19 @@ def rsa_keygen():
 #         password=None,
 #     )
 
+def hash_sign(data):
+    return SHA256.new(data).digest()
+
+
+def signature(hash_, key):
+    return key.sign(hash_, '')
+
+
+def sign():
+    with open("sign.txt", "rb") as signedfile:
+        s = hash_sign(signedfile.read())
+
+    with open("Private_key.txt", "r") as keyfile:
+        private_key = RSA.importKey(keyfile.read().split("\n\n")[0].strip())
+
+    return signature(hash_sign, private_key)[0]
