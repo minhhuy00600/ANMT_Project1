@@ -25,7 +25,25 @@ def hash_256(string):
     return hashlib.sha256(string.encode('utf-8') + salt.encode('utf-8')).hexdigest()
 
 
-def aes_enc(passphrase, Kprivate):
+def aes_ksession(passphrase):
+    key_session = str.encode(passphrase)  # Passphrase use to create key
+
+    if len(key_session) < 16:
+        padding = '%0'  # Padding if key < 16 length
+        length = 16
+
+        key_session = key_session.rjust(length, padding)  # Padding key
+
+    cipher = AES.new(key_session, AES.MODE_EAX)  # AES.new('key', 'AES mode', Vector IV)
+    nonce = cipher.nonce
+    return key_session, nonce
+
+
+def aes_enc_file(key, file_byte):
+    pass
+
+
+def aes_enc_prikey(passphrase, Kprivate):
     key = str.encode(passphrase)  # Passphrase use to create key
 
     if len(key) < 16:
@@ -35,23 +53,21 @@ def aes_enc(passphrase, Kprivate):
         key = key.rjust(length, padding)  # Padding key
 
     cipher = AES.new(key, AES.MODE_EAX)  # AES.new('key', 'AES mode', Vector IV)
-    # nonce = cipher.nonce
+    nonce = cipher.nonce
 
     # Encrypt start . Kprivate must be bytes type
     Kprivate_enc_ed, tag = cipher.encrypt_and_digest(Kprivate)  # or cipher.encrypt('mess') 'mess' must be string type
-    return Kprivate_enc_ed
+    return Kprivate_enc_ed, nonce
 
 
 def aes_dec(ciphertext, key, nonce):  # Decryption , ciphertext must be bytes type
     cipher = AES.new(key, AES.MODE_EAX, nonce=nonce)
     plaintext = cipher.decrypt(ciphertext)
     #  Can sua theo UI
+    return plaintext
 
 
-def rsa_keygen():
-    # Write private key
-    pri_w = open('PrivateKey.txt', 'w')
-    pub_w = open('PubKey.txt', 'w')
+def rsa_keygen():  # Random keygen
     private_key = rsa.generate_private_key(
         public_exponent=65537,
         key_size=2048
@@ -62,18 +78,13 @@ def rsa_keygen():
         encryption_algorithm=serialization.NoEncryption()  # serialization.BestAvailableEncryption(b'mypassword')
     )
 
-    pri_w.write(pem_private_key.decode('utf-8'))
-
     # Write public key to file
     pem_public_key = private_key.public_key().public_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PublicFormat.SubjectPublicKeyInfo
     )
 
-    pub_w.write(pem_public_key.decode('utf-8'))
-
-    pri_w.close()
-    pub_w.close()
+    return pem_public_key.decode('utf-8'), pem_private_key.decode('utf-8')
 
 
 # RSA Key loading

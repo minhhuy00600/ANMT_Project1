@@ -13,16 +13,6 @@
   <property name="windowTitle">
    <string>Encrypt</string>
   </property>
-  <widget class="QListWidget" name="UserList">
-   <property name="geometry">
-    <rect>
-     <x>450</x>
-     <y>60</y>
-     <width>311</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="EncryptASend">
    <property name="geometry">
     <rect>
@@ -33,14 +23,14 @@
     </rect>
    </property>
    <property name="text">
-    <string> Encrypt and Send</string>
+    <string> Encrypt file</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="AddFile">
+  <widget class="QPushButton" name="browser_file_button">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>20</y>
+     <x>360</x>
+     <y>90</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -49,48 +39,23 @@
     <string>Add File</string>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser">
+  <widget class="QLineEdit" name="File_selected_box">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>20</y>
-     <width>91</width>
-     <height>21</height>
+     <x>10</x>
+     <y>130</y>
+     <width>801</width>
+     <height>41</height>
     </rect>
    </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tìm kiếm: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   <property name="font">
+    <font>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
    </property>
-  </widget>
-  <widget class="QTextEdit" name="InputName">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>20</y>
-     <width>201</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QListWidget" name="UserList_2">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>60</y>
-     <width>311</width>
-     <height>192</height>
-    </rect>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>
