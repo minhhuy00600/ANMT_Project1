@@ -7,7 +7,20 @@
     <list default="true" id="036b3572-87ef-4e2e-bdbc-a147c0220218" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/Crypto_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Crypto_func.py" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/123.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crypto_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Crypto_func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Encrypt.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Encrypt.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Functions.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Functions.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Update_info.ui" beforeDir="false" afterPath="$PROJECT_DIR$/Update_info.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Crypto_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/Crypto_func.py" afterDir="false" />
+>>>>>>> a1f464b999dc877d0b640de746e833aecdae5a74
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +153,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>176</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>194</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
