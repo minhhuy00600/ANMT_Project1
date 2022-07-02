@@ -7,6 +7,7 @@ from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from Crypto.PublicKey import RSA
 
+
 # key = b'Sixteen byte key'  # Passphrase use to create key
 # cipher = AES.new(key, AES.MODE_EAX)
 # nonce = cipher.nonce
@@ -88,8 +89,12 @@ def hash_sign(data):
     return SHA256.new(data).digest()
 
 
-def signature(hash_, key):
+def gnsignature(hash_, key):
     return key.sign(hash_, '')
+
+
+def verify_signature(hash, public_key, signature):
+    return public_key.verify(hash, signature)
 
 
 def sign():
@@ -99,4 +104,20 @@ def sign():
     with open("Private_key.txt", "r") as keyfile:
         private_key = RSA.importKey(keyfile.read().split("\n\n")[0].strip())
 
-    return signature(hash_sign, private_key)[0]
+    return gnsignature(hash_sign, private_key)[0]
+
+
+def verify():
+    with open("sign.txt", "rb") as signedfile:
+        s = hash_sign(signedfile.read())
+
+    with open("Public_key.txt", "r") as keyfile:
+        public_key = RSA.importKey(keyfile.read().split("\n\n")[0].strip())
+
+    with open("signaturefile.txt", "r") as signaturefile:
+        signature = long(signaturefile.read())
+
+    if verify_signature(hash, public_key, (signature,)):
+        return sys.exit("valid signature ")
+    else:
+        return sys.exit("invalid signature!")
