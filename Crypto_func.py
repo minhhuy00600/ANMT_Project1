@@ -1,4 +1,5 @@
 import hashlib
+import random
 
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
@@ -18,6 +19,7 @@ from Crypto.PublicKey import RSA
 # cipher = AES.new(key, AES.MODE_EAX, nonce=nonce)
 # plaintext = cipher.decrypt(ciphertext)
 # print('plaintext :', plaintext)
+alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 
 def hash_256(string):
@@ -25,8 +27,8 @@ def hash_256(string):
     return hashlib.sha256(string.encode('utf-8') + salt.encode('utf-8')).hexdigest()
 
 
-def aes_ksession(passphrase):
-    key_session = str.encode(passphrase)  # Passphrase use to create key
+def aes_ksession():
+    key_session = str.encode(''.join(random.choice(alphabet) for i in range(16)))  # Passphrase use to create key
 
     if len(key_session) < 16:
         padding = '%0'  # Padding if key < 16 length
@@ -40,7 +42,9 @@ def aes_ksession(passphrase):
 
 
 def aes_enc_file(key, file_byte):
-    pass
+    cipher = AES.new(key, AES.MODE_EAX)
+    file_e, tag = cipher.encrypt_and_digest(file_byte)
+    return file_e
 
 
 def aes_enc_prikey(passphrase, Kprivate):
@@ -132,3 +136,26 @@ def verify():
         return sys.exit("valid signature ")
     else:
         return sys.exit("invalid signature!")
+
+
+# Encrypt
+# data = 'abc'.encode('utf-8')
+#
+# key = b'Sixteen byte key'
+# cipher = AES.new(key, AES.MODE_EAX)
+#
+# nonce = cipher.nonce
+# print("Nonce is : ", nonce)
+# ciphertext, tag = cipher.encrypt_and_digest(data)
+# print("Ciphertext is : ", ciphertext)
+#
+# # Decrypt
+# cipher = AES.new(key, AES.MODE_EAX, nonce=nonce)
+# plaintext = cipher.decrypt(ciphertext)
+# print('Plaintext is : ', plaintext)
+#
+# try:
+#     cipher.verify(tag)
+#     print("The message is authentic:", plaintext)
+# except ValueError:
+#     print("Key incorrect or message corrupted")

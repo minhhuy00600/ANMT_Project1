@@ -4,6 +4,7 @@ from PyQt5 import uic
 import sys
 import json
 import Crypto_func
+import os
 
 from pathlib import Path
 
@@ -110,6 +111,7 @@ class UI(QMainWindow):  # QMainWindow is main window
             self.show()
             self.UpdateProfile.clicked.connect(self.switch_updateinfo)
             self.Encrypt.clicked.connect(self.switch_encrypt_file)
+            self.Decrypt.clicked.connect(self.switch_decrypt_file)
 
         def switch_updateinfo(self):
             w = UI.Func.UpdateInfo(self.email_login)
@@ -117,7 +119,12 @@ class UI(QMainWindow):  # QMainWindow is main window
             widget.setCurrentIndex(widget.currentIndex() + 1)
 
         def switch_encrypt_file(self):
-            w = UI.Func.EncryptFile()
+            w = UI.Func.EncryptFile(self.email_login)
+            widget.addWidget(w)
+            widget.setCurrentIndex(widget.currentIndex() + 1)
+
+        def switch_decrypt_file(self):
+            w = UI.Func.DecryptFile()
             widget.addWidget(w)
             widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -181,7 +188,8 @@ class UI(QMainWindow):  # QMainWindow is main window
                     outfile.close()
 
         class EncryptFile(QDialog):  # QDialog for sub window to open from main window
-            def __init__(self):
+            def __init__(self, email_log_in):
+                self.email_loged_in = email_log_in
                 super(UI.Func.EncryptFile, self).__init__()
                 uic.loadUi("Encrypt.ui", self)
                 self.show()
@@ -194,12 +202,91 @@ class UI(QMainWindow):  # QMainWindow is main window
 
                 self.File_selected_box.setText(fname[0])
 
+                self.EncryptASend.clicked.connect(self.EncryptFile_exe)
 
-class DecryptFile(QDialog):  # QDialog for sub window to open from main window
-    def __init__(self):
-        super(DecryptFile, self).__init__()
-        uic.loadUi("Decrypt.ui", self)
-        self.show()
+            def EncryptFile_exe(self):
+                path = self.File_selected_box.text()
+                if not path:
+                    return
+
+                # # Split to json filename to open to take KPrivate
+                # json_filename = self.email_loged_in.split("@")[0]
+                # json_filename = json_filename + ".json"
+
+                # Get current file extension ( .xml, .txt, .json, ...)
+                # cur_file_ex = os.path.splitext(path)
+
+                # Get filename
+                filename_e = path.split("/")[-1]
+
+                #  Generate Key Session AES for encrypt file
+                Ksession_aes, Nonce = Crypto_func.aes_ksession()
+                with open(path, 'rb') as read_bin_file:
+                    file_bin = read_bin_file.read()
+                read_bin_file.close()
+
+                # Encrypt file
+                file_bin_e = Crypto_func.aes_enc_file(Ksession_aes, file_bin)
+
+                # Write encrypted file
+                with open('Encrypted File/' + filename_e, 'wb') as write_bin_file:
+                    write_bin_file.write(file_bin_e)
+                write_bin_file.close()
+
+                # Write session key
+                with open('Encrypted File/sessionkey_' + filename_e.split(".")[0] + '.key', 'wb') as write:
+                    write.write(Ksession_aes)
+                write.close()
+
+                # Write Nonce
+                with open('Encrypted File/Nonce_' + filename_e.split(".")[0] + '.key', 'wb') as write_n:
+                    write_n.write(Nonce)
+                write_n.close()
+                print("----File encrypted successfully----")
+                return
+
+        class DecryptFile(QDialog):  # QDialog for sub window to open from main window
+            def __init__(self):
+                super(UI.Func.DecryptFile, self).__init__()
+                uic.loadUi("Decrypt.ui", self)
+                self.show()
+
+                self.browserfile_button.clicked.connect(self.browser_file)
+
+            def browser_file(self):
+                filename = QFileDialog.getOpenFileName(self, 'Open file')
+                #  QFileDialog.getOpenFileName(self, 'Open file', path('D:\HCMUS\...'), extension( '.png', '.xml', ...))
+
+                self.File_selected_box_d.setText(filename[0])
+
+                self.DecryptASend.clicked.connect(self.DecryptFile_exe)
+
+            def DecryptFile_exe(self):
+                path = self.File_selected_box_d.text()
+
+                with open(path, 'rb') as read_bin_file:
+                    file_to_de = read_bin_file.read()
+                read_bin_file.close()
+                file_name_to_d = path.split("/")[-1]
+
+                # Read session key
+                with open('Encrypted File/sessionkey_' + file_name_to_d.split(".")[0] + '.key', 'rb') as read_ks:
+                    key_session = read_ks.read()
+                read_ks.close()
+
+                # Read Nonce
+                with open('Encrypted File/Nonce_' + file_name_to_d.split(".")[0] + '.key', 'rb') as read_n:
+                    Nonce = read_n.read()
+                read_n.close()
+
+                # Decryption
+                file_de = Crypto_func.aes_dec(file_to_de, key_session, Nonce)
+                # Write decrypted file
+                with open('Decrypted File/' + file_name_to_d, 'wb') as write_file:
+                    write_file.write(file_de)
+                write_file.close()
+                print("----Your file is decrypted----")
+                return
 
 
 class Sign(QDialog):  # QDialog for sub window to open from main window
